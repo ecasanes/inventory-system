@@ -1,0 +1,268 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="author" content="ThemeFuse">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modern Touch | Index</title>
+
+<!-- main JS libs -->
+<script src="js/libs/modernizr.min.js"></script>
+<script src="js/libs/jquery-1.10.0.js"></script>
+<script src="js/libs/jquery-ui.min.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+
+<!-- Style CSS -->
+<link href="css/bootstrap.css" media="screen" rel="stylesheet">
+<link href="style.css" media="screen" rel="stylesheet">
+
+<!-- scripts -->
+<script src="js/general.js"></script>
+
+<!-- custom input -->
+<script src="js/jquery.customInput.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<!-- Placeholders -->
+<script type="text/javascript" src="js/jquery.powerful-placeholder.min.js"></script>
+<!-- Lightbox prettyPhoto -->
+<link href="css/prettyPhoto.css" rel="stylesheet">
+<script src="js/jquery.prettyPhoto.js"></script>
+<!-- CarouFredSel  -->
+<script src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+
+        $('#carouFredsel-1').carouFredSel({
+            next : "#carousel-next-1",
+            prev : "#carousel-prev-1",
+            auto: true,
+            scroll: {items : 1}
+        });
+
+        $(window).resize(function() {
+
+            $('#carouFredsel-1').carouFredSel({
+                next : "#carousel-next-1",
+                prev : "#carousel-prev-1",
+                auto: true,
+                scroll: {items : 1}
+            });
+        })
+    });
+</script>
+<!-- Progress Bars -->
+<script src="js/progressbar.js"></script>
+<!-- Calendar -->
+<script src="js/jquery-ui.multidatespicker.js"></script>
+<!-- range sliders -->
+<script src="js/jquery.slider.bundle.js"></script>
+<script src="js/jquery.slider.js"></script>
+<link rel="stylesheet" href="css/jslider.css">
+<!-- Video Player -->
+<link href="css/video-js.css" rel="stylesheet">
+<script src="js/video.js"></script>
+
+<!-- Scroll Bars -->
+<script src="js/jquery.mousewheel.js"></script>
+<script src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript">
+    jQuery(function()
+    {
+        jQuery('.scrollbar').jScrollPane({
+            verticalDragMaxHeight: 18,
+            verticalDragMinHeight:18
+        });
+
+        jQuery('.scrollbar.style2').jScrollPane({
+            verticalDragMaxHeight: 28,
+            verticalDragMinHeight:28
+        });
+
+        jQuery('.scrollbar.style3').jScrollPane({
+            verticalDragMaxHeight: 38,
+            verticalDragMinHeight:38
+        });
+
+        jQuery('.scrollbar.style4').jScrollPane({
+            verticalDragMaxHeight: 38,
+            verticalDragMinHeight:38
+        });
+    });
+</script>
+
+<!--[if lt IE 9]><script src="js/respond.min.js"></script><![endif]-->
+<!--[if gte IE 9]>
+<style type="text/css">
+    .gradient {filter: none !important;}
+</style>
+<![endif]-->
+</head>
+
+<body>
+<div class="body_wrap">
+    <div class="container">
+
+        <!-- content -->
+        <div class="content " role="main">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Website Menu -->
+                    <div id="topmenu">
+                        <ul class="dropdown clearfix boxed boxed-dark-blue">
+                            <li class="menu-level-0"><a href="#"><span>Dashboard</span></a></li>
+                            <li class="menu-level-0"><a href="#"><span>Products</span></a>
+                                <ul class="submenu-1">
+                                    <li class="menu-level-1"><a href="#">Add New!</a></li>
+                                    <li class="menu-level-1"><a href="#">Add Stocks</a></li>
+                                    <li class="menu-level-1"><a href="#">Advanced Search</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-level-0"><a href="#"><span>New Purchase Order</span></a>
+                                
+                            </li>
+                            <li class="menu-level-0"><a href="#"><span>Sales Report</span></a>
+                                <!--<ul class="submenu-1">
+                                    <li class="menu-level-1"><a href="#">Web design</a></li>
+                                    <li class="menu-level-1"><a href="#">User interface</a></li>
+                                    <li class="menu-level-1"><a href="#">Social media</a>
+                                        <ul class="submenu-2">
+                                            <li class="menu-level-2"><a href="#">Item 1</a></li>
+                                            <li class="menu-level-2"><a href="#">Item 2</a></li>
+                                            <li class="menu-level-2"><a href="#">Item 3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>-->
+                            </li>
+                            <li class="menu-search">
+                                <form id="searchForm" class="menu-search-form" method="post">
+                                    <input type="text" name="search" value="" class="menu-search-field" placeholder="Search for Product" />
+                                    <input type="submit" value="" class="btn menu-search-submit" name="search-send" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/ Website Menu -->
+                </div>
+            </div>
+            <!--/ row -->
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                    <div class="select-container boxed-turquoise">
+                        <label>Category</label>
+                        <select class="select" name="category_selector">
+                            <option value="">Category 1</option>
+                            <option value="">Category 2</option>
+                            <option value="">Category 3</option>
+                        </select>
+                    </div>
+
+
+                    <div id="add-new-product" class="place-right">
+                        <a class="btn boxed-turquoise bold" href="#"><span>Add New Product</span></a>
+                    </div>
+
+                    <table class="boxed boxed-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Stocks</th>
+                                <th>Price</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            <tr>
+                                <td class="number">111</td>
+                                <td>Product 1</td>
+                                <td class="number">3</td>
+                                <td class="price"><span>1,999.99 PHP<span></td>
+                                <td class="options align-center">
+                                    <a class="btn btn-blue btn-icon-right btn-arrow-right" href="#"><span>View Full Info</span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="number">222</td>
+                                <td>Product 2</td>
+                                <td class="number">2</td>
+                                <td class="price"><span>199.99 PHP<span></td>
+                                <td class="options align-center">
+                                    <a class="btn btn-blue btn-icon-right btn-arrow-right" href="#"><span>View Full Info</span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="number">333</td>
+                                <td>Product 3</td>
+                                <td class="number">10</td>
+                                <td class="price"><span>19.99 PHP<span></td>
+                                <td class="options align-center">
+                                    <a class="btn btn-blue btn-icon-right btn-arrow-right" href="#"><span>View Full Info</span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="number">444</td>
+                                <td>Product 4</td>
+                                <td class="number">0</td>
+                                <td class="price"><span>1,99.99 PHP<span></td>
+                                <td class="options align-center">
+                                    <a class="btn btn-blue btn-icon-right btn-arrow-right align-center" href="#"><span>View Full Info</span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- tf pagination -->
+                            <div class="tf_pagination style3">
+                                <div class="inner">
+                                    <a class="page_prev" href="#"><span>&lsaquo;</span></a>
+
+                                    <span class="page-numbers page_current">1</span>
+                                    <a href="#" class="page-numbers">2</a>
+                                    <a href="#" class="page-numbers">3</a>
+
+                                    <a class="page_next" href="#"><span>&rsaquo;</span></a>
+                                </div>
+                            </div>
+                            <!--/ tf pagination -->
+                </div>
+            </div>
+
+        
+            <!-- row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="footer" class="boxed-black">
+                        <div class="info">
+                            <p>Project By: Paler, ..., ...</p>
+                        </div>
+
+                        <div class="copyright">
+                            <p>&copy; Copyright 2014</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <!--/ row -->
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>
