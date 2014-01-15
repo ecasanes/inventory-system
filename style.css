@@ -698,16 +698,12 @@ input[type="text"],
 input[type="password"],
 textarea,
 .select_styled{
-	border:1px solid #eceff1;
-	border-top:1px solid #d1d9dd;
-	border-bottom:1px solid #f2f2f2;
+	border:1px solid #888;
 	background: transparent;
 	padding:0 12px;
 	font-size:13px;
-    color: #7b8a97;
+    color: #464E55;
     width: 100%;
-    -webkit-box-shadow: inset 0 2px 3px -1px #ced6db;
-    box-shadow: inset 0 2px 3px -1px #ced6db;
 }
 textarea{padding:10px 12px;}
 
@@ -724,7 +720,7 @@ input[type="password"]{
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus{
-    border:1px solid #f2f2f2;
+	border:1px solid #000;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -1238,6 +1234,14 @@ a.dropdown-toggle:after{
 
 .grid-box a.one-line{
 	padding: 70px 17px 37px;
+}
+
+.grid-box a.widget-2{
+	padding:46px 17px 37px;
+}
+
+.grid-box a.grid-small{
+	padding:30px 17px 26px;
 }
 
 .grid-box strong,
@@ -1819,8 +1823,8 @@ input.weather-search-submit{
 
 #footer{
 	color:#fff;
-	background-color:#000;
 	height:60px;
+	margin-top:10px;
 }
 
 #footer .info{
@@ -1834,41 +1838,43 @@ input.weather-search-submit{
 }
 
 
-table.boxed-table{
+table.boxed-table, table.form{
 	width:100%;
 }
 
-table.boxed-table thead{
+table.boxed-table thead, table.form thead{
 	border-bottom:1px solid #ccc;
 	background-color:#1d5f60;
 	color:#fff;
 }
 
-table.boxed-table thead tr th{
+table.boxed-table thead tr th, table.form thead tr th{
 	padding:10px 20px;
 	font-size:16px;
 	font-weight:bold;
 	text-align:center;
 }
 
-table.boxed-table tbody{
+table.boxed-table tbody, table.form tbody{
 
 }
 
-table.boxed-table tbody tr{
+table.boxed-table tbody tr, table.form tbody tr{
 	border-bottom:1px solid #ccc;
 }
 
-table.boxed-table tbody tr:nth-child(even){
+table.boxed-table tbody tr:nth-child(even), table.form tbody tr:nth-child(even){
 	background-color:#f7f7f7;
 }
 
-table.boxed-table tbody tr:hover{
-	background-color:#FFF3D0;
+table.boxed-table tbody tr:hover, table.form tbody tr:hover{
+	background-color:#FFFCF2;
 }
 
-table.boxed-table tbody tr td{
+table.boxed-table tbody tr td, table.form tbody tr td{
 	padding:10px 20px;
+	vertical-align:middle;
+	color:#333;
 }
 
 td.options{
@@ -1895,21 +1901,31 @@ table tr td.price span{
 
 
 .select-container{
-	padding:10px 10px 6px 10px;
+	padding:10px 10px 4px 10px;
 	float:left;
 	margin-bottom:25px;
+	height:45px;
+
 }
 
 .select-container label{
 	font-size:16px;
 	font-weight:bold;
 	color:#fff;
+	margin-top:5px;
 }
 
-.select-container select{
-	padding:5px 10px;
+.select-container select, .select-container input, .select-container input.basic-search{
+	padding:9px 10px;
 	margin-top:-5px;
 	margin-left:5px;
+	border:none !important;
+	height:auto;
+	width:auto;
+	font-size:14px;
+}
+
+.select-container select:hover, .select-container input:hover, .select-container input.basic-search:hover{
 	border:none;
 }
 
@@ -1936,5 +1952,120 @@ table tr td.price span{
 .bold, .bold span{
 	font-weight:bold;
 }
+
+
+
+
+
+/* FORMS */
+
+table.form{
+
+}
+
+
+table.form thead{
+
+}
+
+
+table.form thead tr{
+
+}
+
+table.form thead tr td{
+
+}
+
+
+
+
+table.form tbody{
+
+}
+
+
+table.form tbody tr{
+
+}
+
+table.form tbody tr td{
+	font-size:14px;
+	color:#000;
+	font-weight:bold;
+}
+
+
+
+
+.select_styled{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+
+.btn-xs span{
+	width:10px;
+	height:10px;
+	padding:1px 8px;
+	font-weight:bold;
+	font-size:14px;
+
+}
+
+.btn-xs span:hover{
+	color:#000;
+}
+
+td.stocks span.value{
+	width:10px;
+}
+
+input.basic-search{
+	border:none;
+	padding:10px;
+	background-color:#fff;
+}
+
+.product-info thead{
+	background-color:#ebc85e !important;
+	color:#000 !important;
+}
+
+.product-info td input{
+	border:none !important;
+	border-bottom:1px solid #333 !important;
+}
+
+
+.purchase-order thead{
+	background-color:#e87352 !important;
+	color:#000 !important;
+}
+
+.custom-box{
+	padding:17px;
+	margin-bottom:10px;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+}
+
+
+h1.title{
+	color:#fff;
+	font-style:normal;
+	font-weight:bold;
+}
+
+.btn span.yellow{
+	background-color:#ebc85e;
+	color:#000;
+}
+
+input.disabled{
+	border:none !important;
+}
+
 
 
