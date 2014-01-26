@@ -1,0 +1,172 @@
+/*-------------------------------------------*/
+/* Custom Styles */
+/*-------------------------------------------*/
+body .content h1.title {
+  color: white;
+  font-style: normal; }
+
+input[type="text"],
+input[type="password"],
+textarea, .select_styled {
+  color: black; }
+
+.input-half {
+  width: 40% !important;
+  text-align: center; }
+
+.input-small {
+  width: 30% !important;
+  text-align: center; }
+
+.symbol {
+  font-weight: bold;
+  font-size: 26px;
+  display: inline-block;
+  padding: 5px 10px 0 10px; }
+
+.sub-price {
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  padding: 10px 0;
+  float: right; }
+
+.main-price {
+  font-weight: bold;
+  font-size: 21px;
+  display: inline-block;
+  padding: 10px 0;
+  float: right;
+  color: #e87352; }
+
+.remove-badge {
+  padding: 4px 7px !important;
+  float: left;
+  margin-top: -2px;
+  margin-right: 10px;
+  background-color: #e87352; }
+
+.add-badge {
+  padding: 4px 10px !important;
+  float: left;
+  margin-top: -2px;
+  margin-right: 0;
+  background-color: #ebc85e;
+  font-size: 21px;
+  border-radius: 20px;
+  color: black; }
+  .add-badge:hover {
+    color: black;
+    background-color: #e87352; }
+
+.text-danger {
+  color: #e87352 !important; }
+
+#footer {
+  height: 60px;
+  margin-top: 10px; }
+  #footer .info {
+    padding: 20px 10px; }
+  #footer .copyright {
+    padding: 20px 10px; }
+
+.boxed-table {
+  background-color: white;
+  width: 100%;
+  margin-bottom: 10px; }
+  .boxed-table thead {
+    color: white; }
+    .boxed-table thead tr th {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center; }
+  .boxed-table tbody tr {
+    border-bottom: 1px solid #ccc; }
+    .boxed-table tbody tr:nth-child(even) {
+      background-color: #f7f7f7; }
+    .boxed-table tbody tr:hover {
+      background-color: #fffCF2; }
+    .boxed-table tbody tr td {
+      padding: 10px 20px;
+      vertical-align: middle;
+      color: #333;
+      font-size: 16px; }
+
+.select-container {
+  padding: 10px 10px 4px 10px;
+  margin-bottom: 25px;
+  height: 45px; }
+  .select-container label {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 5px; }
+  .select-container select,
+  .select-container input {
+    background-color: white;
+    padding: 10px;
+    margin-top: -5px;
+    margin-left: 5px;
+    border: none !important;
+    height: 35px;
+    width: auto;
+    font-size: 16px; }
+    .select-container select:hover,
+    .select-container input:hover {
+      border: none; }
+  .select-container select {
+    padding: 0px 10px; }
+
+.boxed-black {
+  color: white; }
+
+.boxed-dark-green {
+  background: #1d5f60; }
+
+.boxed-dark-yellow {
+  background: #e5b931;
+  color: black !important; }
+
+.btn-submit,
+a.btn-submit {
+  border: none;
+  font-weight: bold;
+  padding: 10px 25px;
+  color: white;
+  font-size: 16px;
+  display: inline-block;
+  height: 37px; }
+
+.widget-one-line {
+  display: block;
+  position: relative;
+  padding: 15px;
+  margin: 0 0 10px 0;
+  width: auto;
+  height: auto;
+  font-weight: bold; }
+
+.category-question-box {
+  display: block;
+  position: relative;
+  padding: 5px;
+  margin: 0;
+  width: 170px;
+  height: auto;
+  text-align: center;
+  font-weight: normal;
+  color: white; }
+  .category-question-box:hover {
+    color: white; }
+
+#category-new,
+#subcategory-new,
+#select-category-link,
+#new-subcategory-link,
+#select-subcategory-link {
+  display: none; }
+
+@media print {
+  .hidden-print {
+    display: none; } }

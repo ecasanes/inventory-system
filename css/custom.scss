@@ -1,0 +1,278 @@
+/*-------------------------------------------*/
+/* Custom Styles */
+/*-------------------------------------------*/
+
+
+$white: #fff;
+$deep-black: #000;
+$gray: #ccc;
+$dark-green: #1d5f60;
+$yellow: #ebc85e;
+$red: #e87352;
+$font_size: 16px;
+
+@mixin custom_box($padding:15px, $margin:10px, $display:block, $position:relative, $width:auto, $height:auto){
+
+	display:$display;
+	position:$position;
+	padding:$padding;
+	margin:$margin;
+	width:$width;
+	height:$height;
+	
+}
+
+
+body{
+	.content{
+
+		h1.title{
+			color:$white;
+			font-style:normal;
+		}
+
+	}
+		
+}
+
+
+input[type="text"], 
+input[type="password"], 
+textarea, .select_styled{
+	color:$deep-black;
+}
+
+.input-half{
+	width:40% !important;
+	text-align:center;
+}
+
+.input-small{
+	width:30% !important;
+	text-align:center;
+}
+
+
+.symbol{
+	font-weight:bold;
+	font-size:26px;
+	display:inline-block;
+	padding:5px 10px 0 10px;
+}
+
+.sub-price{
+	font-weight:bold;
+	font-size:18px;
+	display:inline-block;
+	padding:10px 0;
+	float:right;
+}
+
+
+.main-price{
+	font-weight:bold;
+	font-size:21px;
+	display:inline-block;
+	padding:10px 0;
+	float:right;
+	color:$red;
+}
+
+
+.remove-badge{
+	padding:4px 7px !important;
+	float:left;
+	margin-top:-2px;
+	margin-right:10px;
+	background-color:$red;
+}
+
+
+
+.add-badge{
+	padding:4px 10px !important;
+	float:left;
+	margin-top:-2px;
+	margin-right:0;
+	background-color:$yellow;
+	font-size:21px;
+	border-radius:20px;
+	color:$deep-black;
+
+	&:hover{
+		color:$deep-black;
+		background-color:$red;
+	}
+
+}
+
+
+.text-danger{
+	color:$red !important;
+}
+
+
+
+#footer {
+
+    height: 60px;
+    margin-top: 10px;
+
+	.info {
+	    padding: 20px 10px;
+	}
+
+	.copyright {
+	    padding: 20px 10px;
+	}
+
+}
+
+
+.boxed-table{
+
+	background-color:$white;
+	width: 100%;
+	margin-bottom:10px;
+
+	thead{
+	    
+	    color: $white;
+
+	    tr{
+
+	    	th{
+	    		padding: 10px 20px;
+			    font-size: $font_size;
+			    font-weight: bold;
+			    text-align: center;
+	    	}
+	    	
+	    }
+	}
+
+
+	tbody{
+
+
+		tr{
+			border-bottom: 1px solid #ccc;
+			&:nth-child(even){
+				background-color: #f7f7f7;
+			}
+			&:hover{
+				background-color: #fffCF2;
+			}
+
+			td{
+				padding: 10px 20px;
+			    vertical-align: middle;
+			    color: #333;
+				font-size:$font_size;
+
+			}
+
+
+		}
+
+	}
+
+}
+
+
+
+
+.select-container{
+
+	padding: 10px 10px 4px 10px;
+    margin-bottom: 25px;
+    height: 45px;
+
+    label{
+    	font-size: $font_size;
+	    font-weight: bold;
+	    color: $white;
+	    margin-top:5px;
+    }
+
+    select,
+    input{
+    	background-color:$white;
+    	padding: 10px;
+	    margin-top: -5px;
+	    margin-left: 5px;
+	    border: none !important;
+	    height: 35px;
+	    width: auto;
+	    font-size: $font_size;
+
+	    &:hover{
+	    	border: none;
+	    }
+    }
+
+    select{
+    	padding:0px 10px;
+    }
+}
+
+
+
+
+.boxed-black{
+	color:$white;
+}
+
+.boxed-dark-green{
+	background:$dark-green;
+}
+
+.boxed-dark-yellow{
+	background:darken($yellow, 10);
+	color:$deep-black !important;
+}
+
+
+.btn-submit,
+a.btn-submit{
+	border:none;
+	font-weight:bold;
+	padding:10px 25px;
+	color:$white;
+	font-size:16px;
+	display:inline-block;
+	height:37px;
+}
+
+.widget-one-line{
+	@include custom_box($margin:0 0 10px 0);
+	font-weight:bold;
+}
+
+.category-question-box{
+	@include custom_box($padding:5px,$margin:0,$width:170px);
+	text-align:center;
+	font-weight:normal;
+	color:$white;
+
+	&:hover{
+		color:$white;
+	}
+}
+
+
+#category-new, 
+#subcategory-new, 
+#select-category-link, 
+#new-subcategory-link, 
+#select-subcategory-link {
+    display: none;
+}
+
+
+
+@media print{
+	.hidden-print{
+		display:none;
+	}
+}
