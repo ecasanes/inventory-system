@@ -3,19 +3,18 @@
             <div class="row">
                 <div class="col-sm-12">
                     
-                    <form>
+                    <form name="search_product" method="post" action="">
                     <div class="select-container boxed-turquoise pull-left">
                         <label>Category</label>
                         <select name="category_selector">
-                            <option value="">Category 1</option>
-                            <option value="">Category 2</option>
-                            <option value="">Category 3</option>
+                            <?php echo $categories_select; ?>
                         </select>
                     </div>
 
                     <div class="select-container boxed-turquoise pull-left">
                         <label>Product Name</label>
                         <input type="text" name="product_name"  />
+                        <input class="boxed-yellow" name="search" type="submit" value="Search" />
                     </div>
                     </form>
 

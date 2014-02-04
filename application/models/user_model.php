@@ -130,6 +130,17 @@ class User_Model extends MY_Model {
         }
     }
 
+    public function get_firstname($id){
+        $this->db->select("firstname");
+        $this->db->from(User_Model::DB_TABLE);
+        $this->db->where(array('id' => $id));
+        $query = $this->db->get();
+        $row = $query->row();
+        $firstname = $row->firstname;
+
+        return $firstname;
+    }
+
 
     public function get_current_username($id){
         $this->db->select("username");

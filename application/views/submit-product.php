@@ -4,7 +4,8 @@
 
 	<div class="row">
 		<div class="col-sm-8">
-				<form name="submit-product" id="submit-product" action='<?php echo $action; ?>' method='POST'>
+				<?php echo form_open_multipart($action); ?>
+				<!--<form name="submit-product" id="submit-product" action='<?php echo $action; ?>' method='POST' enctype="multipart/form-data">-->
 				<table class="boxed-table <?php echo $table_class; ?>">
 					<thead class="<?php echo $head_color; ?>">
 						<tr>
@@ -20,15 +21,46 @@
 							</td>
 						</tr>
 						<tr>
+							<td></td>
+							<td class="text-danger">
+								<?php echo form_error('product_name'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>Image</td>
+							<td>
+								<?php echo image_thumbnail($product_image_path, 200, 150); ?>
+								<input type="file" value="" name="userfile" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="text-danger">
+								<?php echo $upload_error; ?>
+							</td>
+						</tr>
+						<tr>
 							<td>Price</td>
 							<td>
 								<input type="text" value="<?php echo $price; ?>" name="price" />
 							</td>
 						</tr>
 						<tr>
+							<td></td>
+							<td class="text-danger">
+								<?php echo form_error('price'); ?>
+							</td>
+						</tr>
+						<tr>
 							<td>Stocks</td>
 							<td>
 								<input type="text" value="<?php echo $stocks; ?>" name="stocks" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="text-danger">
+								<?php echo form_error('stocks'); ?>
 							</td>
 						</tr>
 						<tr>

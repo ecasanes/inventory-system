@@ -21,6 +21,37 @@ class ProductModel extends MY_Model {
 											
 		$query = $this->db->query($sql);
     }
+
+
+    public function get_products($limit, $offset, $category = '', $product_search_key = ''){
+
+    	$db_table = ProductModel::DB_TABLE;
+		$db_primary = ProductModel::DB_TABLE_PK;
+
+		if($category != ''){
+			if($product_search_key != ''){
+				$sql = "SELECT * FROM {$db_table} WHERE category_id = $category AND name LIKE '%$product_search_key%' LIMIT $offset, $limit";
+			}else{
+				$sql = "SELECT * FROM {$db_table} WHERE category_id = $category LIMIT $offset, $limit";
+			}
+		}else{
+			if($product_search_key != ''){
+				$sql = "SELECT * FROM {$db_table} WHERE name LIKE '%$product_search_key%' LIMIT $offset, $limit";
+			}else{
+				$sql = "SELECT * FROM {$db_table} LIMIT $offset, $limit";
+			}
+		}
+    	
+											
+		$query = $this->db->query($sql);
+
+		$result = $query->result();
+
+		return $result;
+
+    }
+
+
 	
 
     public function get_products_by_name($search_key){
@@ -40,10 +71,10 @@ class ProductModel extends MY_Model {
 
 
 
-    public function add($product_name, $price, $stocks, $category_id, $subcategory_id = null, $date_created = '', $code = ''){
+    public function add($product_name, $price, $stocks, $category_id, $subcategory_id = null, $date_created = '', $product_image_name, $product_image_path, $code = ''){
 
-		$sql = "INSERT INTO product ( id, code, name, stocks, price, date_created, subcategory_id, category_id) 
-					VALUES ('', '$code', '$product_name', $stocks, $price, '$date_created', $subcategory_id, $category_id )";
+		$sql = "INSERT INTO product ( id, code, name, stocks, price, date_created, subcategory_id, category_id, product_image_name, product_image_path) 
+					VALUES ('', '$code', '$product_name', $stocks, $price, '$date_created', $subcategory_id, $category_id, '$product_image_name', '$product_image_path')";
 											
 		$query = $this->db->query($sql);
 
@@ -55,9 +86,9 @@ class ProductModel extends MY_Model {
 
 
 
-	public function update($id, $product_name, $price, $stocks, $category_id, $subcategory_id, $date, $code = ''){
+	public function update($id, $product_name, $price, $stocks, $category_id, $subcategory_id, $date, $product_image_name, $product_image_path, $code = ''){
 
-		$sql = "UPDATE product SET code = '$code', name = '$product_name', stocks = $stocks, price = $price, date_created = '$date_created', subcategory_id = $subcategory_id, category_id = $category_id WHERE id = $id";
+		$sql = "UPDATE product SET code = '$code', name = '$product_name', stocks = $stocks, price = $price, date_created = '$date_created', subcategory_id = $subcategory_id, category_id = $category_id, product_image_name = '$product_image_name', product_image_path = '$product_image_path' WHERE id = $id";
 											
 		$query = $this->db->query($sql);
 

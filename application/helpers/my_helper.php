@@ -39,7 +39,24 @@ if (!function_exists('select_age_to'))
 
 
 //PLEASE ADD FUNCTION_EXIST AFTER
+function image_thumbnail($image_path, $width, $height, $mandatory = false){
 
+	$image = '<img src="'.$image_path.'" width="'.$width.'" height="'.$height.'" />';
+
+	if($mandatory){
+		if($image_path == ''){
+			return $image;
+		}else{
+			return $image;
+		}
+	}else{
+		if($image_path == ''){
+			return '';
+		}else{
+			return $image;
+		}
+	}
+}
 
 function select_disability($default = ''){
 

@@ -123,6 +123,8 @@ class Purchase_Order extends MY_Controller {
 
 	public function view_all($status = ''){
 		$this->load->model('PO_Model');
+		$this->load->model('User_Model');
+		$user_model = new User_Model();
 
 		$data = array(
 			'title' => 'Purchase Order List',
@@ -134,8 +136,15 @@ class Purchase_Order extends MY_Controller {
 		
 
         $query_products = array();
+
 		$products = $this->PO_Model->get_all_po(100, 'DESC', $status);
+
+
 		foreach($products as $product){
+
+			$date_created = new DateTime($product->date_created);
+			$date_created = $date_created->format('F d, Y @ H:ia');
+
 			$query_products[] = array(
 				'id' => $product->id, 
 				'remarks' => $product->remarks,
@@ -144,8 +153,8 @@ class Purchase_Order extends MY_Controller {
 				'total_price_paid' => $product->total_price_paid,
 				'purchaser_name' => $product->purchaser_name,
 				'purchaser_address' => $product->purchaser_address,
-				'user_id' => $product->user_id,
-				'date_created' => $product->date_created
+				'user_id' => $user_model->get_firstname($product->user_id),
+				'date_created' => $date_created
 			);
 		}
 

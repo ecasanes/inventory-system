@@ -2,8 +2,7 @@
 
 class Product extends MY_Controller {
 
-	public $publication_id;
-    public $publication_name;
+	public $uploads_directory = 'uploads';
 	public $age_bracket_array = array();
 	
 	public function __construct()
@@ -54,6 +53,14 @@ class Product extends MY_Controller {
 
 
 	public function view_all(){
+
+		$search_category = $this->input->post('category_selector');
+		$search_product_key = $this->input->post('product_name');
+
+		if($search_category == 'all'){
+			$search_category = '';
+		}
+
 		$this->load->library('table');
 		$this->load->library("pagination");
 		$this->load->model('ProductModel');
@@ -66,6 +73,7 @@ class Product extends MY_Controller {
 
 
 		$config = array();
+		$config['use_page_numbers'] = TRUE;
         $config["base_url"] = base_url('product/view-all');
         $config["total_rows"] = $this->ProductModel->row_count();
         $config["per_page"] = 10;
@@ -91,7 +99,7 @@ class Product extends MY_Controller {
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         $query_products = array();
-		$products = $this->ProductModel->get($config["per_page"], $page);
+		$products = $this->ProductModel->get_products($config["per_page"], $page, $search_category, $search_product_key);
 		foreach($products as $product){
 			$query_products[] = array(
 				'id' => $product->id, 
@@ -115,7 +123,7 @@ class Product extends MY_Controller {
 
         $model_data["results"] = $products;
         $model_data["links"] = $this->pagination->create_links();
-        
+        $model_data['categories_select'] = $this->get_categories_select(null,true);
         //$config['anchor_class'] = '';
 
 		
@@ -126,6 +134,15 @@ class Product extends MY_Controller {
 
 	public function save($action = 'add', $id = false){
 
+		$uploads_path = $this->uploads_directory;
+
+		$config['upload_path'] = './'.$uploads_path.'/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '10000';
+		$config['max_width']  = '1920';
+		$config['max_height']  = '1080';
+
+		$this->load->library('upload', $config);
 		$this->load->library('form_validation');
 		$this->load->model('ProductModel');
 		$product = new ProductModel();
@@ -134,11 +151,11 @@ class Product extends MY_Controller {
 		$this->form_validation->set_rules('product_name', 'Product Name', 'required');
 		$this->form_validation->set_rules('price', 'Price', 'required');
 		$this->form_validation->set_rules('stocks', 'Stocks', 'required');
+
 		
 
 		if($this->form_validation->run())
 		{
-		
 			$product_name = $this->input->post('product_name');
 			$price = $this->input->post('price');
 			$stocks = $this->input->post('stocks');
@@ -151,13 +168,16 @@ class Product extends MY_Controller {
 			$datetime = strtotime(Date('Y-m-d H:i:s'));
 			$date = date('Y-m-d H:i:s',$datetime);
 
-
+			
 			if($category_new != '' || !empty($category_new)){
 				$category = $category_new;
 				$description = 'Added as main category for ' . $product_name;
 				$category_id = $product->add_category($category, $description, $date);
 			}else{
 				$category_id = $category_select;
+				if($category_id == '' || empty($category_id)){
+					$category_id = 'null';
+				}
 			}
 
 			if($subcategory_new != '' || !empty($subcategory_new)){
@@ -167,34 +187,74 @@ class Product extends MY_Controller {
 				
 			}else{
 				if($subcategory_select == '' || empty($subcategory_select)){
-					$subcategory_id = 0;
+					$subcategory_id = 'null';
 				}else{
 					$subcategory_id = $subcategory_select;
 				}
 				
 			}
+
+
+			if($action == 'edit'){
+				$product_info = $product->get_product($id);
+				$product_image_name = $product_info['product_image_name'];
+				$product_image_path = base_url().$uploads_path.'/'.$product_image_name;
+			}else{
+				$product_image_name = '';
+				$product_image_path = '';
+			}
+			
+
+
+			if($this->upload->do_upload()){
+				$upload_data = $this->upload->data();
+				$product_image_name = $upload_data['file_name'];
+				$product_image_path = base_url().$uploads_path.'/'.$product_image_name;
+			}
 			
 			
 			if($action == 'add'){
-				$last_insert_id = $product->add($product_name, $price, $stocks, $category_id, $subcategory_id, $date);
+				$last_insert_id = $product->add($product_name, $price, $stocks, $category_id, $subcategory_id, $date, $product_image_name, $product_image_path);
 				redirect('product/edit/'.$last_insert_id.'/success_add');
 			}else{
-				$product->update($id, $product_name, $price, $stocks, $category_id, $subcategory_id, $date);
+				$product->update($id, $product_name, $price, $stocks, $category_id, $subcategory_id, $date, $product_image_name, $product_image_path);
 				redirect('product/edit/'.$id.'/success_edit');
 			}
 			
+			
 		}else{
-			if($action == 'add'){
-				$this->add();
+
+			if(!$this->upload->do_upload()){
+
+				$upload_error = $this->upload->display_errors();
+
+				$additional_model_data = array();
+				$additional_model_data['upload_error'] = $upload_error;
+
+				if($action == 'add'){
+					$this->add('error', $additional_model_data);
+				}else{
+					$this->edit($id);
+				}
+
 			}else{
-				$this->edit($id);
+
+				if($action == 'add'){
+					$this->add();
+				}else{
+					$this->edit($id);
+				}
+
 			}
+
+			
+			
 		}
 	}
 
 
 
-	public function add($outcome = '', $last_insert_id = ''){
+	public function add($outcome = '', $additional_model_data = array()){
 		
 		$this->load->model('ProductModel');
 
@@ -203,6 +263,8 @@ class Product extends MY_Controller {
           	'main_group' => '',
           	'description' => ''
         );
+
+        
 
         $categories_select = $this->get_categories_select();
 		
@@ -218,18 +280,15 @@ class Product extends MY_Controller {
 			'current_product_count' => $this->ProductModel->row_count(),
 			'submit_value' => 'Add Now',
 			'table_class' => '',
-			'head_color' => 'boxed-dark-yellow'
+			'head_color' => 'boxed-dark-yellow',
+			'upload_error' => '',
+			'product_image_path' => ''
 		);
 
-		if($outcome == 'success_add'){
-			$model_data['success_add'] = true;
-			$model_data['last_insert_id'] = $last_insert_id;
-			$model_data['success_edit'] = false;
-		}else{
-			$model_data['success_add'] = false;
-			$model_data['success_edit'] = false;
-			$model_data['last_insert_id'] = $last_insert_id;
-		}
+		if($outcome == 'error'){
+        	$model_data = array_merge($model_data, $additional_model_data);
+        }
+
 		
 		$this->load->view('includes/header', $data);
 		$this->load->view('submit-product', $model_data);
@@ -238,6 +297,7 @@ class Product extends MY_Controller {
 
 	public function edit($id, $outcome = ''){
 
+		$uploads_path = $this->uploads_directory;
 		$this->load->model('ProductModel');
 		$product = new ProductModel();
 
@@ -251,6 +311,8 @@ class Product extends MY_Controller {
 		$subcategory_id = $product_info['subcategory_id'];
 		$category_id = $product_info['category_id'];
 		$date_created = $product_info['date_created'];
+		$product_image_name = $product_info['product_image_name'];
+		$product_image_path = base_url().$uploads_path.'/'.$product_image_name;
 
 
 		$categories_select = $this->get_categories_select($category_id);
@@ -281,7 +343,9 @@ class Product extends MY_Controller {
 			'current_product_count' => $this->ProductModel->row_count(),
 			'submit_value' => 'Update',
 			'table_class' => 'edit',
-			'head_color' => 'boxed-turquoise'
+			'head_color' => 'boxed-turquoise',
+			'upload_error' => '',
+			'product_image_path' => $product_image_path
 		);
 
 		if($outcome == 'success_edit'){
