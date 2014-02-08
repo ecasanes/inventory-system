@@ -7,7 +7,7 @@
 	$po_uri 					= 'purchase-order';
 	$add_new_product_uri 		= 'product/add';
 	$new_po_uri 				= 'purchase-order/add';
-	$reports_uri 				= 'report';
+	$reports_uri 				= 'reports';
 	$users_uri					= 'user';
 	$login_uri					= 'login/validate_login';
 	$logout_uri					= 'login/logout';
@@ -19,6 +19,16 @@
 	$edit_user_uri 				= 'user/edit';
 	$user_profile_uri			= 'user/profile';
 	$logout_uri					= 'login/logout';
+
+	$out_of_stocks_items_uri 		= 'reports/out-of-stock';
+	$sold_per_day_month_year_uri 	= 'reports/sold';
+	$in_demand_items_uri  			= 'reports/in-demand';
+	$sales_chart_uri				= 'reports/sales-chart';
+
+	$out_of_stock_items 			= base_url($out_of_stocks_items_uri);
+	$sold_per_day_month_year 		= base_url($sold_per_day_month_year_uri);
+	$in_demand_items 				= base_url($in_demand_items_uri);
+	$sales_chart 					= base_url($sales_chart_uri);
 
 
 	$dashboard 			= base_url($dashboard_uri);

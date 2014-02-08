@@ -382,74 +382,7 @@ class Product extends MY_Controller {
 
 	
 	
-	public function get_categories_select($id=null, $search = false){
-		
-		$this->load->model('ProductModel');
-		$product = new ProductModel();
-		
-		$categories = $product->get_categories();
-
-
-		$result = '';
-
-		
-
-		
-		if($search){
-			$result .= "<option value='all'>ALL CATEGORIES</option>";
-		}else{
-			if($id != null){
-				$category_name = $product->get_category_name($id);
-				$result .= "<option value='".$id."'>".$category_name."</option>";
-			}else{
-				$result .= "<option value=''>SELECT CATEGORY</option>";
-			}
-			
-		}
-
-		
-
-		foreach($categories as $category){
-			$category_name = $category->name;
-			$category_id = $category->id;
-			$result .= "<option value='{$category_id}'>{$category_name}</option>";
-		}
-		
-		return $result;
-	}
-
-
-
-	public function get_subcategories_select($subcat_id = null){
 	
-		$this->load->model('ProductModel');
-		$product = new ProductModel();
-
-		if($subcat_id != null){
-			$id = $product->get_main_category($subcat_id);
-			$subcategory_name = $product->get_subcategory_name($subcat_id);
-			$result = '<option value="'.$id.'">'.$subcategory_name.'</option>';
-		}else{
-			$id = $this->input->post('id'); // category_id
-			$result = '<option value="">SELECT SUBCATEGORY</option>';
-		}
-	
-		
-		$subcategories = $product->get_subcategories($id);
-
-		
-		foreach($subcategories as $subcategory){
-			$subcategory_id 	= $subcategory->id;
-			$subcategory_name	= $subcategory->name;
-			$result .= '<option value="'.$subcategory_id.'">'.$subcategory_name.'</option>';
-		}
-		
-		if($subcat_id != null){
-			return $result;
-		}else{
-			echo $result;
-		}	
-	}
 	
 }
 
