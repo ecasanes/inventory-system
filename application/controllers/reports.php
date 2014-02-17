@@ -109,6 +109,91 @@ class Reports extends MY_Controller {
 
 
 
+	public function sales(){
+
+		$search_category = $this->input->post('category_selector');
+		$search_product_key = $this->input->post('product_name');
+
+		if($search_category == 'all'){
+			$search_category = '';
+		}
+
+		$this->load->library('table');
+		$this->load->library("pagination");
+		$this->load->model('PO_Model');
+
+		$product_model = new PO_Model();
+
+		$data = array(
+			'title' => 'Sales Report',
+          	'main_group' => '',
+          	'description' => ''
+        );
+
+
+		$config = array();
+		$config['use_page_numbers'] = TRUE;
+        $config["base_url"] = base_url('product/view-all');
+        $config["total_rows"] = $product_model->row_count();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 3;
+        $config['first_link'] = 'first';
+        $config['first_tag_open'] = '<a class="page-numbers"';
+        $config['first_tag_close'] = '</a>';
+        $config['last_link'] = 'last';
+        $config['last_tag_open'] = '<a class="page-numbers"';
+        $config['last_tag_close'] = '</a>';
+        $config['next_link'] = '<span>&rsaquo;</span>';
+        $config['next_tag_open'] = '<a class="page-numbers"';
+        $config['next_tag_close'] = '</a>';
+        $config['prev_link'] = '<span>&lsaquo;</span>';
+        $config['prev_tag_open'] = '<a class="page-numbers"';
+        $config['prev_tag_close'] = '</a>';
+        $config['cur_tag_open'] = '<a class="page-numbers page_current">';
+        $config['cur_tag_close'] = '</a>';
+        $config['num_tag_open'] = '<a class="page-numbers"';
+        $config['num_tag_close'] = '</a>';
+ 
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $query_products = array();
+		$products = $product_model->get_sales($config["per_page"], $page, $search_category, $search_product_key);
+		foreach($products as $product){
+			$query_products[] = array(
+				'item_id' => $product->item_id, 
+				'item_name' => $product->item_name,
+				'date_created' => $product->date_created,
+				'total_sale_stocks' => $product->total_sale_stocks,
+				'average_sale_price' => number_format($product->average_sale_price,2,'.',','),
+				'total_sales' => number_format($product->total_sales,2,'.',',')
+			);
+		}
+
+		//$markup_delete = $this->has_permission(true, 'records/delete');
+
+		$model_data = array(
+        	'products' => $query_products,
+        	'limit' => $config["per_page"],
+        	'offset' => $page 
+        	//'markup_delete' => $markup_delete
+        );
+
+        $model_data["results"] = $products;
+        $model_data["links"] = $this->pagination->create_links();
+        $model_data['categories_select'] = $this->get_categories_select(null,true);
+        //$config['anchor_class'] = '';
+
+		
+		$this->load->view('includes/header', $data);
+		$this->load->view('sales', $model_data);
+		$this->load->view('includes/footer');
+
+	}
+
+
+
+
 
 
 

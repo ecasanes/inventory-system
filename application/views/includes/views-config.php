@@ -22,11 +22,13 @@
 
 	$out_of_stocks_items_uri 		= 'reports/out-of-stock';
 	$sold_per_day_month_year_uri 	= 'reports/sold';
+	$sales_uri 						= 'reports/sales';
 	$in_demand_items_uri  			= 'reports/in-demand';
 	$sales_chart_uri				= 'reports/sales-chart';
 
 	$out_of_stock_items 			= base_url($out_of_stocks_items_uri);
 	$sold_per_day_month_year 		= base_url($sold_per_day_month_year_uri);
+	$sales 							= base_url($sales_uri);
 	$in_demand_items 				= base_url($in_demand_items_uri);
 	$sales_chart 					= base_url($sales_chart_uri);
 

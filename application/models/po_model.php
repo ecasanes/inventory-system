@@ -99,6 +99,57 @@ class PO_Model extends MY_Model {
 	}
 
 
+	public function get_sales_test(){
+
+		$sql = "SELECT DISTINCT(a.item_id) as item_id, c.name as item_name, c.date_created as date_created, sum(a.po_stock) as total_sale_stocks, AVG(a.po_price) as average_sale_price, sum(a.po_stock)*AVG(a.po_price) as total_sales
+				FROM purchased_item a, purchase_order b, product c
+				WHERE a.po_id = b.id AND a.item_id = c.id AND b.status = 'completed' GROUP BY a.item_id";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result();
+
+		return $result;
+
+	}
+
+
+	public function get_sales($limit, $offset, $category = '', $product_search_key = ''){
+
+		$sql = "SELECT DISTINCT(a.item_id) as item_id, c.name as item_name, c.date_created as date_created, sum(a.po_stock) as total_sale_stocks, AVG(a.po_price) as average_sale_price, sum(a.po_stock)*AVG(a.po_price) as total_sales
+				FROM purchased_item a, purchase_order b, product c
+				WHERE a.po_id = b.id AND a.item_id = c.id AND b.status = 'completed'";
+
+		if($category != ''){
+			if($product_search_key != ''){
+				$sql .= "  AND c.category_id = $category AND c.name LIKE '%$product_search_key%'
+					GROUP BY a.item_id
+					LIMIT $offset, $limit";
+			}else{
+				$sql .= "  AND c.category_id = $category
+					GROUP BY a.item_id
+					LIMIT $offset, $limit";
+			}
+		}else{
+			if($product_search_key != ''){
+				$sql .= "  AND c.name LIKE '%$product_search_key%'
+					GROUP BY a.item_id
+					LIMIT $offset, $limit";
+			}else{
+				$sql .= "GROUP BY a.item_id
+					LIMIT $offset, $limit";
+			}
+		}
+    	
+											
+		$query = $this->db->query($sql);
+
+		$result = $query->result();
+
+		return $result;
+    }
+
+
 	
 
 

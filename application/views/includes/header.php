@@ -58,9 +58,9 @@
                             <li class="menu-level-0"><a class="<?php echo $reports_active; ?>" href="<?php echo $reports; ?>"><span>Reports</span></a>
                                 <ul class="submenu-1">
                                     <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $out_of_stock_items; ?>">Out of Stock Items</a></li>
-                                    <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $sold_per_day_month_year; ?>">Sold per Day/Month/Year</a></li>
-                                    <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $in_demand_items; ?>">In Demand Items</a></li>
-                                    <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $sales_chart; ?>">Sales Chart</a></li>
+                                    <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $sales; ?>">Sales</a></li>
+                                    <!--<li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $in_demand_items; ?>">In Demand Items</a></li>
+                                    <li class="menu-level-1"><a class="<?php echo $new_po_active; ?>" href="<?php echo $sales_chart; ?>">Sales Chart</a></li>-->
                                 </ul>
                             </li>
 
