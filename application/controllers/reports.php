@@ -121,8 +121,11 @@ class Reports extends MY_Controller {
 		$this->load->library('table');
 		$this->load->library("pagination");
 		$this->load->model('PO_Model');
+		$this->load->model('ProductModel');
 
-		$product_model = new PO_Model();
+
+		$product_model = new ProductModel();
+		$po_model = new PO_Model();
 
 		$data = array(
 			'title' => 'Sales Report',
@@ -158,7 +161,7 @@ class Reports extends MY_Controller {
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         $query_products = array();
-		$products = $product_model->get_sales($config["per_page"], $page, $search_category, $search_product_key);
+		$products = $po_model->get_sales($config["per_page"], $page, $search_category, $search_product_key);
 		foreach($products as $product){
 			$query_products[] = array(
 				'item_id' => $product->item_id, 
